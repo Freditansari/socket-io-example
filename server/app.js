@@ -9,7 +9,13 @@ server.listen(7777);
 app.get('/', (req, res) => res.send('Hello World!'))
 
 io.sockets.on('connection', (socket) =>{
-    console.log('a client connected')
+    console.log('a client connected');
+
+    //listen to disconnect event
+    socket.on('disconnect',() =>{
+        console.log('a user disconnected')
+    })
+
     //listen to event 
     socket.on('news', data =>{
         console.log(data.potato);
